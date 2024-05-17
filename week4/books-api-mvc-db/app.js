@@ -16,9 +16,13 @@ const validateBook = require("./middlewares/validateBook");
 const app = express();
 const PORT = process.env.PORT || 3000;
 
+// Static file serving
+const staticMiddleware = express.static("public")
+
 // Middleware to handle request body
 app.use(bp.json());
 app.use(bp.urlencoded({ extended: true }));
+app.use(staticMiddleware);
 
 // Routes
 app.get("/books", booksController.getAllBooks);
